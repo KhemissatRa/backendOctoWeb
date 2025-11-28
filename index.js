@@ -15,7 +15,7 @@ const port = process.env.PORT || 5000;
       console.log(`Server is running on http://localhost:${port}`);
     });
 const connectDB = require('./db/db')
-connectDB()
+connectDB();
 
 
 
