@@ -1,15 +1,13 @@
 const mongoose= require('mongoose')
 const app = require("express");
-const url = 'mongodb://localhost:27017/Ecomme'
+const url = "mongodb+srv://khemissatraouf98_db_user:<db_password>@cluster0.5dsyf89.mongodb.net/?appName=Cluster0";
 
-const connectDB =async ()=>{
-    try{
-        await mongoose.connect(url)
-        console.log('mongoose connected')
-    }catch(err){
-        console.log(err)
-    }
-}
+
+
+
+mongoose.connect(url)
+  .then(() => console.log("MongoDB Atlas connected"))
+  .catch(err => console.error("Error:", err));
 
 
 module.exports = connectDB
