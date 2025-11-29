@@ -14,9 +14,6 @@ console.log("Node TLS version:", process.versions.openssl);
 const port = process.env.PORT || 5000;
 console.log("MONGO_URL:", process.env.MONGO_URL);
 
-    app.listen(port, () => {
-      console.log(`Server is running on http://localhost:${port}`);
-    });
 const connectDB = require('./db/db')
 connectDB();
 
