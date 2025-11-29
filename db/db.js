@@ -1,11 +1,6 @@
 const { MongoClient, ServerApiVersion } = require("mongodb");
-require("dotenv").config();
 
 const uri = process.env.MONGO_URL;
-
-if (!uri) {
-  throw new Error("❌ MONGO_URI not found in env variables");
-}
 
 const client = new MongoClient(uri, {
   serverApi: {
