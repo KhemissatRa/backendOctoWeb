@@ -5,8 +5,9 @@ dotenv.config();
 const cors = require("cors");
 app.use(cors({
   origin: "*",
-  credentials: true
-}));app.use(express.json())
+  credentials: false
+}));
+app.use(express.json())
 app.use(express.urlencoded({ extended: true })); // optional, for form data
 
 const port = process.env.PORT || 5000;
