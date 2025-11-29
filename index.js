@@ -9,6 +9,7 @@ app.use(cors({
 }));
 app.use(express.json())
 app.use(express.urlencoded({ extended: true })); // optional, for form data
+console.log("Node TLS version:", process.versions.openssl);
 
 const port = process.env.PORT || 5000;
 console.log("MONGO_URL:", process.env.MONGO_URL);
