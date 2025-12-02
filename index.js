@@ -1,30 +1,41 @@
-const express = require("express")
-const app = express()
-const dotenv =require("dotenv");
+const express = require("express");
+const app = express();
+const dotenv = require("dotenv");
 dotenv.config();
 const cors = require("cors");
+
+// CORS
 app.use(cors({
-  origin: "*",
-  credentials: false
+  origin: "https://admin-dashboard-octoweb.vercel.app", // replace with your frontend
+  credentials: true
 }));
-app.use(express.json())
-app.use(express.urlencoded({ extended: true })); // optional, for form data
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Debug TLS & Mongo URL (remove in production)
 console.log("Node TLS version:", process.versions.openssl);
 
-const port = process.env.PORT || 5000;
-console.log("MONGO_URL:", process.env.MONGO_URL);
+// DB
+const connectDB = require('./db/db');
 
-const connectDB = require('./db/db')
-connectDB();
+const startServer = async () => {
+  try {
+    await connectDB();
 
+    // Routes
+    app.use('/api/products', require('./route/product'));
+    app.use('/api/orders', require('./route/order'));
+    app.use('/api/admin', require('./route/admin'));
 
+    // Start server
+    const port = process.env.PORT || 5000;
+    app.listen(port, () => {
+      console.log(`✅ Server running on port ${port}`);
+    });
+  } catch (err) {
+    console.error("❌ Failed to start server:", err);
+  }
+};
 
-
-
-
-const productRouter = require('./route/product')
-app.use('/', productRouter)
-const Order = require('./route/order')
-app.use('/',Order)
-const adminRouter = require('./route/admin')
-app.use('/',adminRouter)  
+startServer();
