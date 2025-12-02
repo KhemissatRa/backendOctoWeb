@@ -24,9 +24,9 @@ const startServer = async () => {
     await connectDB();
 
     // Routes
-    app.use('/api/products', require('./route/product'));
-    app.use('/api/orders', require('./route/order'));
-    app.use('/api/admin', require('./route/admin'));
+    app.use('/', require('./route/product'));
+    app.use('/', require('./route/order'));
+    app.use('/', require('./route/admin'));
 
     // Start server
     const port = process.env.PORT || 5000;
