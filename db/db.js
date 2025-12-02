@@ -1,22 +1,15 @@
-const { MongoClient, ServerApiVersion } = require("mongodb");
-
-const uri = process.env.MONGO_URL;
-
-const client = new MongoClient(uri, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    deprecationErrors: true
-  }
-});
+// db/db.js
+const mongoose = require("mongoose");
 
 async function connectDB() {
   try {
-    await client.connect();
-    await client.db("admin").command({ ping: 1 });
-    console.log("✅ MongoDB Atlas Connected");
-    return client;
-  } catch (error) {
-    console.error("❌ MongoDB connection failed:", error.message);
+    await mongoose.connect(process.env.MONGO_URL, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("✅ MongoDB Connected via Mongoose");
+  } catch (err) {
+    console.error("❌ MongoDB connection failed:", err.message);
     process.exit(1);
   }
 }
