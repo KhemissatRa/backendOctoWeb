@@ -5,10 +5,22 @@ dotenv.config();
 const cors = require("cors");
 
 // CORS
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://admin-dashboard-octoweb.vercel.app"
+ ,"https://octo-web-eight.vercel.app/"
+];
+
 app.use(cors({
-  origin: "https://admin-dashboard-octoweb.vercel.app", // replace with your frontend
-  credentials: true
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);   // allow request
+    } else {
+      callback(new Error("Blocked by CORS")); // deny request
+    }
+  }
 }));
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
