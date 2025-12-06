@@ -8,7 +8,7 @@ const cors = require("cors");
 const origins = [
   "http://localhost:5173",
   "https://admin-dashboard-octoweb.vercel.app",
-  "https://octo-web-eight.vercel.app/"
+  "https://octo-web-eight.vercel.app"
 ];
 
 app.use(cors({
