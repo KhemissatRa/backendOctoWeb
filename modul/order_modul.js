@@ -5,16 +5,14 @@ const OrderSchema = new mongoose.Schema({
     type: Object, // cart items array
     required: true
   },
+
   name: {
     type: String,
     required: true,
     minlength: 3,
     maxlength: 50
   },
-  email: {
-    type: String,
-    required: true
-  },
+
   willaya: {
     type: String,
     required: true

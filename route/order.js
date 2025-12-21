@@ -6,7 +6,7 @@ const Auth = require("../middleware/auth_middleware");
 router.post("/order",pOrdee);
 
 // Get all products
-router.get("/order",Auth,gtOrder);
+router.get("/order",gtOrder);
 
 
 // Update product by ID

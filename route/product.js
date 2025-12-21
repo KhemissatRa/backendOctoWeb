@@ -11,7 +11,7 @@ router.post("/product", Auth, upload.single("Image"), CrProduct);
 router.get("/product",getProduct);
 
 // Get product by ID
-router.get("/product/:id", GtProductId);
+router.get("/product/:id",GtProductId);
 
 // Update product by ID
 router.put("/product/:id", Auth, upload.single("Image"), UpProduct);
